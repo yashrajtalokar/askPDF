@@ -13,7 +13,6 @@ const ChatPage = () => {
   useEffect(() => {
     pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-    // Fetch chat history when the component mounts
     fetchChatHistory();
   }, []);
 
@@ -32,7 +31,7 @@ const ChatPage = () => {
       const documentId = response.data.yourSourceId;
       setSID(response.data.chatPdfSourceId);
       setPdfUrl(`http://localhost:5000/pdf/${documentId}`);
-      // Fetch chat history after uploading a new PDF
+ 
       fetchChatHistory();
     } catch (error) {
       console.error(error);
@@ -46,7 +45,6 @@ const ChatPage = () => {
         query,
       });
 
-      // Update chat history with user query and API response
       setChatHistory([
         ...chatHistory,
         { role: 'user', content: query },
