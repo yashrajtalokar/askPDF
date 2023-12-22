@@ -10,7 +10,7 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 const UPLOAD_DIR = path.resolve('./uploads'); 
-const CHATPDF_API_KEY = 'process.env.CHATPDF_API'; 
+const CHATPDF_API_KEY = process.env.CHATPDF_API; 
 const CHATPDF_API_URL = 'https://api.chatpdf.com/v1';
 
 // Enable CORS
