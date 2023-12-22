@@ -1,4 +1,4 @@
-
+//sec_EAw6WbZWtOjgj2rklPreJWqoV2UlnoQb
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
@@ -10,7 +10,7 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 5000;
 const UPLOAD_DIR = path.resolve('./uploads'); 
-const CHATPDF_API_KEY = 'chat_gpt_api'; // Replace with your ChatPDF API key
+const CHATPDF_API_KEY = 'sec_EAw6WbZWtOjgj2rklPreJWqoV2UlnoQb'; 
 const CHATPDF_API_URL = 'https://api.chatpdf.com/v1';
 
 // Enable CORS
@@ -20,6 +20,7 @@ app.use(express.json());
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
+
 app.post('/upload', upload.single('pdf'), async (req, res) => {
   try {
     if (!req.file) {
@@ -27,7 +28,6 @@ app.post('/upload', upload.single('pdf'), async (req, res) => {
     }
 
     const sourceId = `${Date.now()}-${Math.random().toString(36).substring(7)}`;
-
     const filename = `${sourceId}-document.pdf`;
     const filePath = path.join(UPLOAD_DIR, filename);
 

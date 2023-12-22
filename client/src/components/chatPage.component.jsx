@@ -73,19 +73,19 @@ const ChatPage = () => {
   };
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', p: 2 }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', p: 2, backgroundColor:' #8BC6EC', backgroundImage: 'linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%)'}}>
+    <Typography variant="h6" sx={{fontSize:'37px', zIndex: '1', fontFamily: 'Palanquin Dark'}}>AskPDF</Typography>
       <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '100%', p: 2 }}>
-        <Box sx={{ width: '50%', height: '80vh', overflow: 'auto' }}>
+        <Box sx={{ width: '49%', height: '70vh', justifyContent: 'center',alignItems:'center',overflow: 'auto', backgroundColor: '#f8f8ff', boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px', borderRadius:'30px' }}>
           {pdfUrl && (
-            <Document file={pdfUrl} onLoadSuccess={onDocumentLoadSuccess}>
+            <Document file={pdfUrl} onLoadSuccess={onDocumentLoadSuccess} sx={{padding:'10px 10px'}}>
               {Array.from(new Array(numPages), (el, index) => (
                 <Page key={`page_${index + 1}`} pageNumber={index + 1} />
               ))}
             </Document>
           )}
         </Box>
-        <Box sx={{ width: '50%', height: '80vh', overflowY: 'auto', display: 'flex', flexDirection: 'column', }}>
-          <Typography variant="h6">Chat with PDF:</Typography>
+        <Box sx={{ width: '50%', height: '70vh', overflowY: 'auto', display: 'flex', flexDirection: 'column', backgroundColor:'#FFFAFA',backgroundImage:`url(https://i.pinimg.com/564x/8c/98/99/8c98994518b575bfd8c949e91d20548b.jpg)`,boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px', borderRadius:'30px'}}>
           <Box sx={{ flex: 1, display: 'block', marginBottom: 2 }}>
             {chatHistory.map((chat, index) => (
               <Box
@@ -112,11 +112,16 @@ const ChatPage = () => {
           </Box>
         </Box>
       </Box>
+
       <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '100%', p: 2 }}>
-        <Box sx={{ width: '50%', marginTop: 2, alignItems: 'center'}}>
-          <Typography variant="h6">Upload PDF:</Typography>
-          <input type="file" onChange={handleFileChange} />
+
+        <Box sx={{ width: '50%', marginTop: 2, alignItems: 'center', display:'flex', border:'4px dotted red', marginRight:'40px',justifyContent:'center'}}>
+          <Typography variant="h6" sx={{zIndex: 1, justifyContent: 'space-between', paddingRight:'20px', paddingLeft:'20px', fontFamily:'sans-serif', fontWeight:'bold'}}>Upload PDF</Typography>
+          <input type="file" onChange={handleFileChange} sx={{display: 'none',":hover": {
+            cursor: 'pointer'
+          }}}/>
         </Box>
+
         <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between',width: '50%', alignItems: 'center', marginTop: 2 }}>
         <TextField
           variant="outlined"
@@ -124,13 +129,14 @@ const ChatPage = () => {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Ask your question..."
-          sx={{maxWidth: 750,}}
+          sx={{maxWidth: 750, borderRadius: 2, right:0, backgroundColor:'whitesmoke'}}
         />
         <Button variant="contained" onClick={handleQuerySubmit} sx={{ marginLeft: 1, fontSize: 20, boxShadow: 1,
           borderRadius: 2, padding: "10px 30px" }}>
           Ask
         </Button>
       </Box>
+
       </Box>
     </Box>
   );
