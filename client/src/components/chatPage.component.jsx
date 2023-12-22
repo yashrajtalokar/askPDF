@@ -10,6 +10,8 @@ const ChatPage = () => {
   const [sID, setSID] = useState('');
   const [numPages, setNumPages] = useState(0);
 
+  const URL = 'https://askpdf-81w2.onrender.com';
+
   useEffect(() => {
     pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -22,7 +24,7 @@ const ChatPage = () => {
     formData.append('pdf', file);
 
     try {
-      const response = await axios.post('http://localhost:5000/upload', formData, {
+      const response = await axios.post('https://askpdf-81w2.onrender.com/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -30,7 +32,7 @@ const ChatPage = () => {
 
       const documentId = response.data.yourSourceId;
       setSID(response.data.chatPdfSourceId);
-      setPdfUrl(`http://localhost:5000/pdf/${documentId}`);
+      setPdfUrl(`${URL}/pdf/${documentId}`);
  
       fetchChatHistory();
     } catch (error) {
@@ -40,7 +42,7 @@ const ChatPage = () => {
 
   const handleQuerySubmit = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/chats', {
+      const response = await axios.post('https://askpdf-81w2.onrender.com/chats', {
         chatPdfSourceId: sID,
         query,
       });
@@ -60,7 +62,7 @@ const ChatPage = () => {
   const fetchChatHistory = async () => {
     try {
       if (sID) {
-        const response = await axios.get(`http://localhost:5000/chats/history/${sID}`);
+        const response = await axios.get(`${URL}/chats/history/${sID}`);
         setChatHistory(response.data.chatHistory);
       }
     } catch (error) {
