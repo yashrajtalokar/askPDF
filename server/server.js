@@ -1,4 +1,3 @@
-//sec_EAw6WbZWtOjgj2rklPreJWqoV2UlnoQb
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
@@ -6,11 +5,12 @@ const fs = require('fs');
 const FormData = require('form-data');
 const axios = require('axios');
 const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 const UPLOAD_DIR = path.resolve('./uploads'); 
-const CHATPDF_API_KEY = 'sec_EAw6WbZWtOjgj2rklPreJWqoV2UlnoQb'; 
+const CHATPDF_API_KEY = 'process.env.CHATPDF_API'; 
 const CHATPDF_API_URL = 'https://api.chatpdf.com/v1';
 
 // Enable CORS
